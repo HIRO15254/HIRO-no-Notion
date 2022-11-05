@@ -4,8 +4,6 @@ import { NotificationsProvider } from '@mantine/notifications';
 import Head from 'next/head';
 import React from 'react';
 
-import Page from '../components/Page';
-
 import type { AppProps } from 'next/app';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
@@ -29,9 +27,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
       <Head>
         <title>HIRO no Notion</title>
       </Head>
-      <Page>
-        <Component {...pageProps} />
-      </Page>
+      <Component {...pageProps} />
     </NotificationsProvider>
   </MantineProvider>
 );

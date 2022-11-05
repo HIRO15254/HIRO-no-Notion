@@ -1,10 +1,12 @@
 import { Text } from '@mantine/core';
 import React from 'react';
 
+import Page from '../components/Page';
+
 const Home: React.FC = () => (
-  <div>
+  <Page>
     <Text>HIRO Notion integration</Text>
-  </div>
+  </Page>
 );
 
 export default Home;
