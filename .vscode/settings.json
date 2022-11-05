@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "linebreak",
+        "mantine"
+    ],
+    "files.eol": "\n",
+    "eslint.alwaysShowStatus": true,
+    "eslint.codeActionsOnSave.rules": null,
+    "eslint.format.enable": true,
+    "eslint.packageManager": "yarn"
+}
