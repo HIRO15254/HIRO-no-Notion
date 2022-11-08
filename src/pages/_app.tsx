@@ -4,8 +4,6 @@ import { NotificationsProvider } from '@mantine/notifications';
 import Head from 'next/head';
 import React from 'react';
 
-import Page from '../components/Page';
-
 import type { AppProps } from 'next/app';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
@@ -13,7 +11,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
     withGlobalStyles
     withNormalizeCSS
     theme={{
-      /** Put your mantine theme override here */
+      globalStyles: (theme) => ({
+        body: {
+          backgroundColor: theme.colorScheme === 'dark' ? '#191919' : theme.white,
+        },
+      }),
       colorScheme: 'dark',
     }}
   >
@@ -29,9 +31,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
       <Head>
         <title>HIRO no Notion</title>
       </Head>
-      <Page>
-        <Component {...pageProps} />
-      </Page>
+      <Component {...pageProps} />
     </NotificationsProvider>
   </MantineProvider>
 );

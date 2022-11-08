@@ -3,7 +3,8 @@
         "HIRO",
         "HIRO's",
         "linebreak",
-        "mantine"
+        "mantine",
+        "Pomodoro"
     ],
     "files.eol": "\n",
     "eslint.alwaysShowStatus": true,
