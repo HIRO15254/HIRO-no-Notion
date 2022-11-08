@@ -14,7 +14,7 @@ const TimeCounter: React.FC<TimeCounterProps> = (props) => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setTime(time + 1);
+      setTime(dayjs().diff(startTime, 'second', false));
     }, 1000);
     return () => clearInterval(intervalId);
   }, [time]);

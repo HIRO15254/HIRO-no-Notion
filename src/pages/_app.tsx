@@ -11,7 +11,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
     withGlobalStyles
     withNormalizeCSS
     theme={{
-      /** Put your mantine theme override here */
+      globalStyles: (theme) => ({
+        body: {
+          backgroundColor: theme.colorScheme === 'dark' ? '#191919' : theme.white,
+        },
+      }),
       colorScheme: 'dark',
     }}
   >
