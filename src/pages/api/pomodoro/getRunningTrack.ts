@@ -1,5 +1,4 @@
-import { Client, isFullPage } from '@notionhq/client';
-import { CreatePageResponse } from '@notionhq/client/build/src/api-endpoints';
+import { Client } from '@notionhq/client';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
