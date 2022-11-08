@@ -11,11 +11,6 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
     withGlobalStyles
     withNormalizeCSS
     theme={{
-      globalStyles: (theme) => ({
-        body: {
-          backgroundColor: theme.colorScheme === 'dark' ? '#191919' : theme.white,
-        },
-      }),
       colorScheme: 'dark',
     }}
   >
@@ -23,7 +18,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
       styles={(theme) => ({
         body: {
           backgroundColor:
-              theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+              theme.colorScheme === 'dark' ? '#191919' : theme.colors.gray[0],
         },
       })}
     />
@@ -31,7 +26,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
       <Head>
         <title>HIRO no Notion</title>
       </Head>
-      <Component {...pageProps} />
+      <body>
+        <Component {...pageProps} />
+      </body>
     </NotificationsProvider>
   </MantineProvider>
 );
