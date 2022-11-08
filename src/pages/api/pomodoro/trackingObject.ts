@@ -7,6 +7,7 @@ import { TRACKING_DATABASE_ID } from '../../../constants/constants';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+dayjs.tz.setDefault('Asia/Tokyo');
 
 type CreateTrackingObjectInfo = {
   sessionType: 'ポモドーロ' | '短休憩' | '長休憩';
@@ -24,10 +25,10 @@ const CreateTrackingObject = (info: CreateTrackingObjectInfo): CreatePageParamet
     },
     properties: {
       開始時間: {
-        start: info.startDate.format(),
+        start: info.startDate.tz().format(),
       },
       終了時間: {
-        start: info.startDate.add(info.minuteLength, 'm').format(),
+        start: info.startDate.tz().add(info.minuteLength, 'm').format(),
       },
       実行中: true,
       タイプ: {
@@ -36,7 +37,7 @@ const CreateTrackingObject = (info: CreateTrackingObjectInfo): CreatePageParamet
       タイトル: [
         {
           text: {
-            content: `${countDate.format('YYYY/MM/DD')} ${info.sessionType}#${info.sessionCount}`,
+            content: `${countDate.tz().format('YYYY/MM/DD')} ${info.sessionType}#${info.sessionCount}`,
             link: null,
           },
           annotations: {

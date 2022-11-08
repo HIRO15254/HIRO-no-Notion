@@ -9,6 +9,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+dayjs.tz.setDefault('Asia/Tokyo');
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
@@ -69,7 +70,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
         終了時間: {
           date: {
-            start: now.format(),
+            start: now.tz().format(),
           },
         },
         実行タスク: {
@@ -92,7 +93,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
         終了時間: {
           date: {
-            start: now.format(),
+            start: now.tz().format(),
           },
         },
       },

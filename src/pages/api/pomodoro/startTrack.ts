@@ -36,14 +36,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const todayTracking = await notion.databases.query({
     database_id: TRACKING_DATABASE_ID,
     filter: {
-      and: [
-        {
-          property: '開始時間',
-          date: {
-            on_or_after: todayStart.utc().format(),
-          },
-        },
-      ],
+      property: '開始時間',
+      date: {
+        on_or_after: todayStart.utc().format(),
+      },
     },
   });
   const { results } = todayTracking;
