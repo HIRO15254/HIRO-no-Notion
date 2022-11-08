@@ -5,14 +5,14 @@ import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 
 import { TRACKING_DATABASE_ID } from '../../../constants/constants';
-import CreateTrackingObject from './pomodoroObject';
+import CreateTrackingObject from './trackingObject';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const TYPE_TIME = {
+const TRACKING_TYPE_TIME = {
   ポモドーロ: 25,
   短休憩: 5,
   長休憩: 15,
@@ -58,7 +58,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     && result.properties['実行中'].type === 'checkbox'
     && result.properties['実行中'].checkbox,
   )) {
-    res.status(200).json({ message: 'Tracking already running' });
+    res.status(200).json({ message: '既に実行されているトラッキングがあります' });
     return;
   }
 
@@ -66,13 +66,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     CreateTrackingObject({
       sessionType: trackType,
       startDate: now,
-      minuteLength: TYPE_TIME[trackType] ?? 25,
+      minuteLength: TRACKING_TYPE_TIME[trackType] ?? 25,
       sessionCount: sessionCount + 1,
     }),
   ).then(
-    (response: CreatePageResponse) => res.status(200).json({ message: 'Tracking started', response }),
+    (response: CreatePageResponse) => res.status(200).json({ message: 'トラッキングは正常に開始されました', response }),
   ).catch(
-    (error) => res.status(500).json({ message: 'Error starting Tracking', error }),
+    (error) => res.status(500).json({ message: error.message }),
   );
 };
 
