@@ -78,7 +78,7 @@ const PomodoroPage: React.FC = () => {
           <Group position="center">
             <TimeCounter startTime={startTime} />
           </Group>
-          <Button onClick={StartPomodoroButtonPressed} variant="light">Finish</Button>
+          <Button onClick={FinishButtonPressed} variant="light">Finish</Button>
         </Stack>
       )}
     </Center>
