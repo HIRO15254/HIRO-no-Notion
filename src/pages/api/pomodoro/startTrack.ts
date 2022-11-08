@@ -11,6 +11,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+dayjs.tz.setDefault('Asia/Tokyo');
 
 const TRACKING_TYPE_TIME = {
   ポモドーロ: 25,
@@ -31,19 +32,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   });
   const now = dayjs();
   const actualDay = now.add(-4, 'h'); // 4時を基準にした今日
-  const todayStart = dayjs(`${actualDay.format('YYYY-MM-DD')}T04:00:00+09:00`);
+  const todayStart = dayjs(`${actualDay.tz().format('YYYY-MM-DD')}T04:00:00+09:00`);
 
   const todayTracking = await notion.databases.query({
     database_id: TRACKING_DATABASE_ID,
     filter: {
-      and: [
-        {
-          property: '開始時間',
-          date: {
-            on_or_after: todayStart.utc().format(),
-          },
-        },
-      ],
+      property: '開始時間',
+      date: {
+        on_or_after: todayStart.utc().format(),
+      },
     },
   });
   const { results } = todayTracking;
