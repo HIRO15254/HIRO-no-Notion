@@ -81,7 +81,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }).then(() => {
       res.status(200).json({ message: 'トラッキングを正常に終了しました' });
     }).catch((error) => {
-      res.status(500).json({ message:  });
+      res.status(500).json({ message: error.message });
     });
   } else {
     await notion.pages.update({
