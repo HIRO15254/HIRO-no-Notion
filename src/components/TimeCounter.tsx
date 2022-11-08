@@ -21,7 +21,7 @@ const TimeCounter: React.FC<TimeCounterProps> = (props) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <Title>
+      <Title size={72}>
         {`${Math.floor(time / 60).toString().padStart(2, '0')}:${(time % 60).toString().padStart(2, '0')}`}
       </Title>
     </div>

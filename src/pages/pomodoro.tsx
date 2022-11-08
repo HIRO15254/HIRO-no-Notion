@@ -1,11 +1,13 @@
-import { Button, Text } from '@mantine/core';
+import {
+  Button, Center, Title, Group, Stack,
+} from '@mantine/core';
 import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 
 import TimeCounter from '../components/TimeCounter';
 
 const PomodoroPage: React.FC = () => {
-  const [mode, setMode] = useState<'start' | 'progress'>('start');
+  const [mode, setMode] = useState<'start' | 'progress' | 'loading'>('loading');
   const [startTime, setStartTime] = useState(dayjs());
 
   useEffect(() => {
@@ -51,23 +53,35 @@ const PomodoroPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <Center p="md">
+      {mode === 'loading' && (
+        <Stack w="100%" maw={400}>
+          <Group position="center">
+            <Title>Loading...</Title>
+          </Group>
+        </Stack>
+      )}
       {mode === 'start' && (
-        <div>
-          <Text>Pomodoro is not Started</Text>
-          <Button onClick={StartPomodoroButtonPressed}>Start Pomodoro</Button>
-          <Button onClick={StartShortBreakButtonPressed}>Start ShortBreak</Button>
-          <Button onClick={StartLongBreakButtonPressed}>Start LongBreak</Button>
-        </div>
+        <Stack w="100%" maw={400}>
+          <Group position="center">
+            <Title> Track is not Started</Title>
+          </Group>
+          <Button onClick={StartPomodoroButtonPressed} color="red" variant="light">Start Pomodoro</Button>
+          <Group grow>
+            <Button onClick={StartShortBreakButtonPressed} variant="light">Start ShortBreak</Button>
+            <Button onClick={StartLongBreakButtonPressed} color="teal" variant="light">Start LongBreak</Button>
+          </Group>
+        </Stack>
       )}
       {mode === 'progress' && (
-        <div>
-          <Text>Pomodoro is Progress</Text>
-          <TimeCounter startTime={startTime} />
-          <Button onClick={FinishButtonPressed}>Finish</Button>
-        </div>
+        <Stack w="100%" maw={400}>
+          <Group position="center">
+            <TimeCounter startTime={startTime} />
+          </Group>
+          <Button onClick={StartPomodoroButtonPressed} variant="light">Finish</Button>
+        </Stack>
       )}
-    </div>
+    </Center>
   );
 };
 
